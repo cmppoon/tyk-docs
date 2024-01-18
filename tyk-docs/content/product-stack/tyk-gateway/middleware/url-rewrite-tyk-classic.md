@@ -6,13 +6,13 @@ tags: ["URL rewrite", "middleware", "per-endpoint", "Tyk Classic"]
 ---
 
 ## Overview
-Tyk's [URL rewriter]({{< ref "/transform-traffic/url-rewriting" >}}) uses the concepts of triggers and rules to determine if the request (target) URL should be modified. These can be combined in flexible ways to create sophisticated logic to direct requests made to a single endpoint to various upstream services (or other APIs internally exposed within Tyk).
+Tyk's [URL rewriter]({{< ref "transform-traffic/url-rewriting" >}}) uses the concepts of triggers and rules to determine if the request (target) URL should be modified. These can be combined in flexible ways to create sophisticated logic to direct requests made to a single endpoint to various upstream services (or other APIs internally exposed within Tyk).
 
-URL rewrite triggers and rules are explained in detail [here]({{< ref "/product-stack/tyk-gateway/middleware/url-rewrite-middleware" >}}).
+URL rewrite triggers and rules are explained in detail [here]({{< ref "product-stack/tyk-gateway/middleware/url-rewrite-middleware" >}}).
 
 When working with Tyk Classic APIs the rules and triggers are configured in the Tyk Classic API Definition; this can be done manually within the `.json` file or from the API Designer in the Tyk Dashboard.
 
-If you're using the newer Tyk OAS APIs, then check out [this]({{< ref "/product-stack/tyk-gateway/middleware/url-rewrite-tyk-oas" >}}) page.
+If you're using the newer Tyk OAS APIs, then check out the [Tyk OAS]({{< ref "/product-stack/tyk-gateway/middleware/url-rewrite-tyk-oas" >}}) page.
 
 ## Configuring the URL rewriter in the Tyk Classic API Definition
 
@@ -110,22 +110,22 @@ For example:
 In this example, the basic trigger is configured as before, but two advanced triggers have been added.
 
 The first advanced trigger has this configuration:
- - key location is query parameter
- - key name is genre
- - pattern is fiction
+ - key location is query parameter (`query_val_matches`)
+ - key name is `genre`
+ - pattern  (`match_rx`) is `fiction`
 
 So if a `GET` request is made to `/books/author?genre=fiction` the advanced trigger will fire and the URL will be rewritten to `library/service/author?genre=fiction`.
 
 The second advanced trigger has this configuration:
  - rule condition: ALL
  - rule 1
-    - key location is header parameter
+    - key location is header parameter (`header_val_matches`)
     - key name is `X-Enable-Beta`
-    - pattern is `true``
+    - pattern (`match_rx`) is `true`
  - rule 2
-    - key location is session metadata
+    - key location is session metadata (`session_meta_matches`)
     - key name is `beta_enabled`
-    - pattern is `true`
+    - pattern (`match_rx`) is `true`
 
 So if a `GET` request is made to `/books/author` with a header `"X-Enable-Beta":"true"` and, within the session metadata, `"beta_enabled":"true"` the second advanced trigger will fire and the URL will be written to `https://beta.library.com/books/author` taking the request to a different upstream host entirely.
 

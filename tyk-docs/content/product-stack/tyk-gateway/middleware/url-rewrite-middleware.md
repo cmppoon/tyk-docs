@@ -6,7 +6,7 @@ tags: ["URL rewrite", "middleware", "per-endpoint", "rewrite trigger", "rewrite 
 ---
 
 ## Overview
-Tyk's [URL rewrite]({{< ref "/transform-traffic/url-rewriting" >}}) middleware uses the concepts of [triggers](#url-rewrite-triggers) and [rules](#url-rewrite-rules) to determine if the request (target) URL should be modified. These can be combined in flexible ways to create sophisticated logic to direct requests made to a single endpoint to various upstream services (or other APIs internally exposed within Tyk through [looping]({{< ref "/advanced-configuration/transform-traffic/looping" >}})).
+Tyk's [URL rewrite]({{< ref "transform-traffic/url-rewriting" >}}) middleware uses the concepts of [triggers](#url-rewrite-triggers) and [rules](#url-rewrite-rules) to determine if the request (target) URL should be modified. These can be combined in flexible ways to create sophisticated logic to direct requests made to a single endpoint to various upstream services (or other APIs internally exposed within Tyk through [looping]({{< ref "advanced-configuration/transform-traffic/looping" >}})).
 
 ## URL rewrite rules
 The URL rewrite middleware compares a [key](#key) with a [pattern](#pattern) to determine if there is a match; the rules define the location of the key and the structure of the pattern.
@@ -24,7 +24,7 @@ Keys can be located in the following elements of the request:
 
 Note that there is no key name when using the request body location, as the entire body (payload) of the request is used as the key value.
 
-When using the request header location, the key name is the normalised form of the header name: with capitalisation and use of `-` as separator. For example, the header name`customer_identifier` would be identified in a rule via the key name `Customer-Identifier`.
+When using the request header location, the key name is the normalised form of the header name: with capitalisation and use of `-` as separator. For example, the header name `customer_identifier` would be identified in a rule via the key name `Customer-Identifier`.
 
 When using the request path location, you can use wildcards in the key name (which is the URL path) - for example `/asset/{type}/author/`. The URL rewrite middleware will treat the wildcard as a `(.*)` regex so that any value matches. The wildcard value itself will be ignored, is not extracted from the key, and is not available for use in constructing the [rewrite path](#creating-the-rewrite-path).
 
@@ -32,18 +32,18 @@ When using the request path location, you can use wildcards in the key name (whi
 The pattern takes the form of a regular expression (regex) against which the key value will be compared.
 
 This pattern can be a static regex or can contain dynamic variables:
- - [Context variables]({{< ref "/context-variables" >}}), extracted from the request at the start of the middleware chain, can be injected into the pattern regex using the `$tyk_context.` namespace
+ - [Context variables]({{< ref "context-variables" >}}), extracted from the request at the start of the middleware chain, can be injected into the pattern regex using the `$tyk_context.` namespace
    - Note that you need to enable context variables for the API to be able to access them from the URL rewrite middleware
- - [Session metadata]({{< ref "/getting-started/key-concepts/session-meta-data" >}}), from the Tyk Session Object linked to the request, can be injected into the pattern regex using the `$tyk_meta.METADATA_KEY` namespace 
+ - [Session metadata]({{< ref "getting-started/key-concepts/session-meta-data" >}}), from the Tyk Session Object linked to the request, can be injected into the pattern regex using the `$tyk_meta.METADATA_KEY` namespace 
 
-Percent-encoded (URL-encoded) characters can be used in the pattern regex when the key is the request path or path parameter
+Percent-encoded (URL-encoded) characters can be used in the pattern regex when the key location is the request path or path parameter
  - If the middleware is called with percent-encoded characters in the key, matching will first be attempted using the raw URL as provided
  - If there is no match, the percent-encoded characters will be replaced with their non-encoded form (e.g. `%2D` -> `-`) and checked again
  
 {{< note success >}}
 **Note** 
 
-Tyk does not check all combinations of encoded and decoded characters in the same string (so `my-test%2Durl` will only be checked as `my-test%2Durl` and `my-test-url`, it will not be checked against `my%2Dtest%2Durl` or `my%2Dtest-url`).
+Tyk does not check all permutations of encoded and decoded characters in the same string (so `my-test%2Durl` will only be checked as `my-test%2Durl` and `my-test-url`, it will not be checked against `my%2Dtest%2Durl` or `my%2Dtest-url`).
 {{< /note >}}
 
 ## URL rewrite triggers
@@ -53,7 +53,7 @@ There are two types of trigger in the URL rewriter: basic and advanced.
 The basic trigger has a single rule for which the key location is always the request path. For the simplest case of URL rewriting, you can simply configure the `pattern` regex and `rewriteTo` target URL for this basic trigger.
 
 #### Advanced triggers
-One or more advanced triggers can be configured alongside the basic trigger. These are processed in the order that they are defined in the API Definition. When using the API Designer in Tyk Dashboard, advanced triggers are automatically numbered in the order they are created and will be processed in numberical order.
+One or more advanced triggers can be configured alongside the basic trigger. These are processed in the order that they are defined in the API Definition. When using the API Designer in Tyk Dashboard, advanced triggers are automatically numbered in the order they are created and will be processed in numerical order.
 
 Advanced triggers can have multiple rules that can be combined using a logical AND or OR operation, such that either `all` the rules must pass or `any` rule must pass for the trigger to fire.
 
