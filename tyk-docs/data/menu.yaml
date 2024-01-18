@@ -2359,6 +2359,10 @@ menu:
           path: /tyk-apis/tyk-dashboard-api/api-definitions
           category: Page
           show: True
+        - title: "API Templates"
+          path: /tyk-apis/tyk-dashboard-api/templates
+          category: Page
+          show: True
         - title: "API Key Management"
           path: /tyk-apis/tyk-dashboard-api/api-keys
           category: Page
