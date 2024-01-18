@@ -12,7 +12,7 @@ Tyk's [URL rewrite]({{< ref "transform-traffic/url-rewriting" >}}) middleware us
 The URL rewrite middleware compares a [key](#key) with a [pattern](#pattern) to determine if there is a match; the rules define the location of the key and the structure of the pattern.
 
 #### Key
-The key value is the content of a field in some element of the request; as such each key has a location (which element of the request) and a name (the name of the field within that element). For example, to obtain the key value `book` from the request `GET /asset?type=book` the key location would be `query parameter` and the key name would be `type`.
+Each key has a _location_ (which indicates an element of the request),  most also have a _name_ (the name of the field within that element); the key value is the content of that field. For example, given the request `GET /asset?type=book&condition=new` if key _location_ is `query parameter` and the key _name_ is `type`, the key value would be `book`.
 
 Keys can be located in the following elements of the request:
  - request path / path parameter (i.e. components of the path itself)
