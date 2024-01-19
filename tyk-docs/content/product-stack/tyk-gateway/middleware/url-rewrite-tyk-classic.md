@@ -131,7 +131,7 @@ So if a `GET` request is made to `/books/author` with a header `"X-Enable-Beta":
 
 ## Configuring the URL rewriter in the API Designer
 
-You can use the API Designer in the Tyk Designer to configure the URL rewrite middleware for your Tyk Classic API by following these steps.
+You can use the API Designer in the Tyk Dashboard to configure the URL rewrite middleware for your Tyk Classic API by following these steps.
 
 #### Step 1: Add an endpoint for the path and select the URL rewrite plugin
 From the **Endpoint Designer** add an endpoint that matches the path you want to rewrite. Select the **URL Rewrite** plugin.
