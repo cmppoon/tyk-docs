@@ -16,7 +16,7 @@ If you're using the legacy Tyk Classic APIs, then check out the [Tyk Classic]({{
 
 ## Configuring the URL rewriter in the Tyk OAS API Definition
 
-The URL rewrite middleware can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
+The URL rewrite middleware (`urlRewrite`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 For the basic trigger, you only need to enable the middleware (set `enabled:true`) and then configure the `pattern` and the `rewriteTo` (target) URL. The design of the Tyk OAS API Definition takes advantage of the `operationID` [defined in the OpenAPI Document]({{< ref "getting-started/key-concepts/paths#operation-id" >}}) that declares both the path and method required by the basic trigger.
 
