@@ -12,7 +12,7 @@ URL rewrite triggers and rules are explained in detail [here]({{< ref "product-s
 
 When working with Tyk OAS APIs the rules and triggers are configured in the [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc#operation" >}}); this can be done manually within the `.json` file or from the API Designer in the Tyk Dashboard.
 
-If you're using the legacy Tyk Classic APIs, then check out the [Tyk Classic]({{< ref "/product-stack/tyk-gateway/middleware/url-rewrite-tyk-classic" >}}) page.
+If you're using the legacy Tyk Classic APIs, then check out the [Tyk Classic]({{< ref "product-stack/tyk-gateway/middleware/url-rewrite-tyk-classic" >}}) page.
 
 ## Configuring the URL rewriter in the Tyk OAS API Definition
 
