@@ -35,11 +35,6 @@ This pattern can be a static regex or can contain dynamic variables:
  - [Context variables]({{< ref "context-variables" >}}), extracted from the request at the start of the middleware chain, can be injected into the pattern regex using the `$tyk_context.` namespace
  - [Session metadata]({{< ref "getting-started/key-concepts/session-meta-data" >}}), from the Tyk Session Object linked to the request, can be injected into the pattern regex using the `$tyk_meta.METADATA_KEY` namespace 
 
-{{< note success >}}
-**Note**  
-
-When using Tyk Classic APIs, you must enable context variables for the API to be able to access them from the URL rewrite middleware. When using Tyk OAS APIs, the context variables are always available to the URL rewriter.
-{{< /note >}}
 
 Percent-encoded (URL-encoded) characters can be used in the pattern regex when the key location is the request path or path parameter
  - If the middleware is called with percent-encoded characters in the key, matching will first be attempted using the raw URL as provided
