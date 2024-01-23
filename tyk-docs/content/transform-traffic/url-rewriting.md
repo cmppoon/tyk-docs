@@ -34,7 +34,7 @@ A rule is a simple pattern match - you identify the location of a `key` and defi
 
 A trigger combines one or more rules with a target (or `rewriteTo`) URL. If the logical combination of the rules results in a pass outcome, then the trigger is considered to have been fired and the target URL for the request will be rewritten.
 
-More detail on URL Rewrite triggers and rules can be found by consulting the [URL Rewrite middleware]({{< ref "/product-stack/tyk-gateway/middleware/url-rewrite-middleware" >}}) section.
+More detail on URL Rewrite triggers and rules can be found by consulting the [URL Rewrite middleware]({{< ref "product-stack/tyk-gateway/middleware/url-rewrite-middleware" >}}) section.
 
 You can find details and examples of how to configure the URL rewrite middleware in the dedicated [Tyk OAS API]({{< ref "product-stack/tyk-gateway/middleware/url-rewrite-tyk-oas" >}}) and [Tyk Classic API]({{< ref "product-stack/tyk-gateway/middleware/url-rewrite-tyk-classic" >}}) sections.
 
