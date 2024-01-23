@@ -4479,9 +4479,9 @@
             "/docs/4.1/": "/planning-for-production/database-settings/",
             "/docs/4.0/": "/planning-for-production/database-settings/",
             "/docs/nightly/": "/planning-for-production/database-settings/",
-            "/docs/3.2/": "/planning-for-production/redis-mongodb-sizing/",
-            "/docs/3.1/": "/planning-for-production/redis-mongodb-sizing/",
-            "/docs/3-lts/": "/planning-for-production/redis-mongodb-sizing/"
+            "/docs/3.2/": "/planning-for-production/redis-mongodb/",
+            "/docs/3.1/": "/planning-for-production/redis-mongodb/",
+            "/docs/3-lts/": "/planning-for-production/redis-mongodb/"
         },
         "/planning-for-production/database-settings/mongodb-sizing/": {
             "/docs/": "/planning-for-production/database-settings/mongodb-sizing/",
@@ -8455,12 +8455,12 @@
             "/docs/5.0/": "/tyk-cloud/environments--deployments/",
             "/docs/4.3/": "/tyk-cloud/environments--deployments/",
             "/docs/nightly/": "/tyk-cloud/environments--deployments/",
-            "/docs/4.2/": "/tyk-cloud/configuration-options/",
-            "/docs/4.1/": "/tyk-cloud/configuration-options/",
-            "/docs/4.0/": "/tyk-cloud/configuration-options/",
-            "/docs/3.2/": "/tyk-cloud/configuration-options/",
-            "/docs/3.1/": "/tyk-cloud/configuration-options/",
-            "/docs/3-lts/": "/tyk-cloud/configuration-options/"
+            "/docs/4.2/": "/tyk-cloud/environments-&-deployments/",
+            "/docs/4.1/": "/tyk-cloud/environments-&-deployments/",
+            "/docs/4.0/": "/tyk-cloud/environments-&-deployments/",
+            "/docs/3.2/": "/tyk-cloud/environments-&-deployments/",
+            "/docs/3.1/": "/tyk-cloud/environments-&-deployments/",
+            "/docs/3-lts/": "/tyk-cloud/environments-&-deployments/"
         },
         "/tyk-cloud/environments--deployments/hybrid-gateways/": {
             "/docs/4.2/": "/tyk-cloud/environments--deployments/hybrid-gateways/",
