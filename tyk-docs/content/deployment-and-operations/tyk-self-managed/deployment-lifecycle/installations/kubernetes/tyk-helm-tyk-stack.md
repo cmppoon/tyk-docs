@@ -106,17 +106,18 @@ kubectl create secret generic admin-secrets -n $NAMESPACE \
     --from-literal=adminUserPassword=$ADMIN_PASSWORD
 ```
 
-**2. Install Redis (if you don't have a Redis instance)**
+**2. Install Redis (if you don't already have Redis installed)**
 
 If you do not already have Redis installed, you may use these charts provided by Bitnami.
 
 ```bash
 helm upgrade tyk-redis oci://registry-1.docker.io/bitnamicharts/redis -n $NAMESPACE --install --set image.tag=6.2.13
 ```
-Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is 
-`tyk-redis-master.tyk.svc:6379` (Tyk needs the name including the port) 
+Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is `tyk-redis-master.tyk.svc:6379` (Tyk needs the name including the port) 
 
-**3. Install PostgreSQL (if you don't have a PostgreSQL instance)**
+The Bitnami chart also creates a secret `tyk-redis` which stores the connection password in `redis-password`. We will make use of this passowrd in installation later.
+
+**3. Install PostgreSQL (if you don't already have PostgreSQL installed)**
 
 If you do not already have PostgreSQL installed, you may use these charts provided by Bitnami.
 
@@ -125,6 +126,8 @@ helm upgrade tyk-postgres oci://registry-1.docker.io/bitnamicharts/postgresql --
 ```
 
 Follow the notes from the installation output to get connection details.
+
+We would need the PostgreSQL connection string for Tyk  installation. You can store it in a secret and provide the secret in installation later.
 
 ```
 POSTGRESQLURL=host=tyk-postgres-postgresql.$NAMESPACE.svc\ port=5432\ user=postgres\ password=$(kubectl get secret --namespace $NAMESPACE tyk-postgres-postgresql -o jsonpath="{.data.postgres-password}" | base64 -d)\ database=tyk_analytics\ sslmode=disable
@@ -194,6 +197,7 @@ helm upgrade tyk-redis oci://registry-1.docker.io/bitnamicharts/redis -n $NAMESP
 Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is 
 `tyk-redis-master.tyk.svc:6379` (Tyk needs the name including the port) 
 
+The Bitnami chart also creates a secret `tyk-redis` which stores the connection password in `redis-password`. We will make use of this passowrd in installation later.
 
 **3. Install MongoDB (if you don't have a MongoDB instance)**
 
@@ -201,7 +205,11 @@ If you do not already have MongoDB installed, you may use these charts provided 
 
 ```bash
 helm upgrade tyk-mongo oci://registry-1.docker.io/bitnamicharts/mongodb -n $NAMESPACE --install
+```
 
+We would need the MongoDB connection string for Tyk installation. You can store it in a secret and provide the secret in installation later.
+
+```
 MONGOURL=mongodb://root:$(kubectl get secret --namespace $NAMESPACE tyk-mongo-mongodb -o jsonpath="{.data.mongodb-root-password}" | base64 -d)@tyk-mongo-mongodb.$NAMESPACE.svc:27017/tyk_analytics?authSource=admin
 
 kubectl create secret generic mongourl-secrets --from-literal=mongoUrl=$MONGOURL -n $NAMESPACE
