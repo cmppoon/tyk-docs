@@ -56,14 +56,6 @@ Also, you can set the version of each component through `image.tag`. You could f
 * [Redis](https://tyk.io/docs/tyk-oss/ce-helm-chart/#recommended-via-bitnami-chart) should already be installed or accessible by the gateway.
 * [MongoDB](https://www.mongodb.com) or [PostgreSQL](https://www.postgresql.org) should already be installed or accessible by the gateway.
 
-## Add Helm Repository
-
-```bash
-helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
-helm repo update
-```
-
-See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation.
 
 ## Quick Start Guides
 The following guides provide instructions to install Redis, PostgreSQL/MongoDB, and Tyk stack with default configurations. It is intended for quick start only. For production, you should install and configure Redis and MongoDB / PostgreSQL separately.
@@ -140,6 +132,10 @@ kubectl create secret generic postgres-secrets  -n $NAMESPACE --from-literal=pos
 
 **4. Install Tyk**
 ```
+helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
+
+helm repo update
+
 helm upgrade tyk tyk-helm/tyk-stack -n $NAMESPACE \
   --install \
   --set global.adminUser.useSecretName=admin-secrets \
@@ -223,6 +219,10 @@ kubectl create secret generic mongourl-secrets --from-literal=mongoUrl=$MONGOURL
 
 **4. Install Tyk**
 ```
+helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
+
+helm repo update
+
 helm upgrade tyk tyk-helm/tyk-stack -n $NAMESPACE \
   --install \
   --set global.adminUser.useSecretName=admin-secrets \
@@ -244,6 +244,15 @@ Keep reading to learn about other configuration options included in the Helm Cha
 {{< tab_end >}}
 {{< tabs_end >}}
 
+
+## Add Helm Repository
+
+```bash
+helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
+helm repo update
+```
+
+See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation.
 
 ## Installing The Chart
 
