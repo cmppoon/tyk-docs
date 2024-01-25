@@ -56,7 +56,22 @@ Also, you can set the version of each component through `image.tag`. You could f
 * [Redis](https://tyk.io/docs/tyk-oss/ce-helm-chart/#recommended-via-bitnami-chart) should already be installed or accessible by the gateway.
 * [MongoDB](https://www.mongodb.com) or [PostgreSQL](https://www.postgresql.org) should already be installed or accessible by the gateway.
 
-## Quick Start with PostgreSQL
+## Add Helm Repository
+
+```bash
+helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
+helm repo update
+```
+
+See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation.
+
+## Quick Start Guides
+The following guides provide instructions to install Redis, PostgreSQL/MongoDB, and Tyk stack with default configurations. It is intended for quick start only. For production, you should install and configure Redis and MongoDB / PostgreSQL separately.
+
+{{< tabs_start >}}
+
+{{< tab_start "Quick Start with PostgreSQL" >}}
+
 The following quick start guide explains how to use the Tyk Stack Helm chart to configure a Dashboard that includes:
 - Redis for key storage
 - PostgreSQL for app config
@@ -64,8 +79,10 @@ The following quick start guide explains how to use the Tyk Stack Helm chart to 
 
 At the end of this quickstart Tyk Dashboard should be accessible through service `dashboard-svc-tyk-tyk-dashboard` at port `3000`. You can login to Dashboard using the admin email and password to start managing APIs. Tyk Gateway will be accessible through service `gateway-svc-tyk-tyk-gateway.tyk.svc` at port `8080`.
 
-```
+1. First, you need to provide Tyk license, admin email and password, and API keys. We recommend to store them in secrets.
+```bash
 NAMESPACE=tyk
+
 API_SECRET=changeit
 ADMIN_KEY=changeit
 TYK_LICENSE=changeit
@@ -84,15 +101,34 @@ kubectl create secret generic admin-secrets -n $NAMESPACE \
     --from-literal=adminUserLastName=User \
     --from-literal=adminUserEmail=$ADMIN_EMAIL \
     --from-literal=adminUserPassword=$ADMIN_PASSWORD
+```
 
+2. If you do not already have Redis installed, you may use these charts provided by Bitnami.
+
+```bash
 helm upgrade tyk-redis oci://registry-1.docker.io/bitnamicharts/redis -n $NAMESPACE --install --set image.tag=6.2.13
+```
+Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is 
+`tyk-redis-master.tyk.svc:6379` (Tyk needs the name including the port) 
 
+3. If you do not already have PostgreSQL installed, you may use these charts provided by Bitnami.
+
+```bash
 helm upgrade tyk-postgres oci://registry-1.docker.io/bitnamicharts/postgresql --set "auth.database=tyk_analytics" -n $NAMESPACE --install
+```
 
+Follow the notes from the installation output to get connection details.
+
+```
 POSTGRESQLURL=host=tyk-postgres-postgresql.$NAMESPACE.svc\ port=5432\ user=postgres\ password=$(kubectl get secret --namespace $NAMESPACE tyk-postgres-postgresql -o jsonpath="{.data.postgres-password}" | base64 -d)\ database=tyk_analytics\ sslmode=disable
 
 kubectl create secret generic postgres-secrets  -n $NAMESPACE --from-literal=postgresUrl="$POSTGRESQLURL"
+```
 
+>NOTE: Please make sure you are installing MongoDB or PostgreSQL versions that are supported by Tyk. Please refer to Tyk docs to get list of [supported versions]({{< ref "tyk-dashboard/database-options" >}}).
+
+4. Install Tyk
+```
 helm upgrade tyk tyk-helm/tyk-stack -n $NAMESPACE \
   --install \
   --set global.adminUser.useSecretName=admin-secrets \
@@ -104,7 +140,10 @@ helm upgrade tyk tyk-helm/tyk-stack -n $NAMESPACE \
   --set global.postgres.connectionStringSecret.keyName=postgresUrl
 ```
 
-## Quick Start with MongoDB
+
+{{< tab_end >}}
+{{< tab_start "Quick Start with MongoDB" >}}
+
 The following quick start guide explains how to use the Tyk Stack Helm chart to configure a Dashboard that includes:
 - Redis for key storage
 - MongoDB for app config
@@ -154,6 +193,11 @@ helm upgrade tyk tyk-helm/tyk-stack -n $NAMESPACE \
   --set global.storageType=mongo \
   --set tyk-pump.pump.backend='{prometheus,mongo}' 
 ```
+
+
+{{< tab_end >}}
+{{< tabs_end >}}
+
 
 ## Installing The Chart
 
