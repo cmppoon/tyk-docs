@@ -1564,7 +1564,7 @@ menu:
             category: Directory
             show: True
             menu:          
-            - title: "Overview of URL Rewriting"
+            - title: "Overview"
               path: /transform-traffic/url-rewriting
               category: Page
               show: True
