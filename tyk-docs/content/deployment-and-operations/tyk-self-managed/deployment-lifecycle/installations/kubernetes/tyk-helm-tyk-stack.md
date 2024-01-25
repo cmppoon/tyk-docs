@@ -115,7 +115,7 @@ helm upgrade tyk-redis oci://registry-1.docker.io/bitnamicharts/redis -n $NAMESP
 ```
 Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is `tyk-redis-master.tyk.svc:6379` (Tyk needs the name including the port) 
 
-The Bitnami chart also creates a secret `tyk-redis` which stores the connection password in `redis-password`. We will make use of this passowrd in installation later.
+The Bitnami chart also creates a secret `tyk-redis` which stores the connection password in `redis-password`. We will make use of this secret in installation later.
 
 **3. Install PostgreSQL (if you don't already have PostgreSQL installed)**
 
@@ -151,6 +151,9 @@ helm upgrade tyk tyk-helm/tyk-stack -n $NAMESPACE \
   --set global.postgres.connectionStringSecret.keyName=postgresUrl
 ```
 
+Now Tyk Dashboard should be accessible through service `dashboard-svc-tyk-tyk-dashboard` at port `3000`. You can login to Dashboard using the admin email and password to start managing APIs. Tyk Gateway will be accessible through service `gateway-svc-tyk-tyk-gateway.tyk.svc` at port `8080`.
+
+Keep reading to learn about other configuration options included in the Helm Chart.
 
 {{< tab_end >}}
 {{< tab_start "Quick Start with MongoDB" >}}
@@ -197,7 +200,7 @@ helm upgrade tyk-redis oci://registry-1.docker.io/bitnamicharts/redis -n $NAMESP
 Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is 
 `tyk-redis-master.tyk.svc:6379` (Tyk needs the name including the port) 
 
-The Bitnami chart also creates a secret `tyk-redis` which stores the connection password in `redis-password`. We will make use of this passowrd in installation later.
+The Bitnami chart also creates a secret `tyk-redis` which stores the connection password in `redis-password`. We will make use of this secret in installation later.
 
 **3. Install MongoDB (if you don't have a MongoDB instance)**
 
@@ -234,6 +237,9 @@ helm upgrade tyk tyk-helm/tyk-stack -n $NAMESPACE \
   --set tyk-pump.pump.backend='{prometheus,mongo}' 
 ```
 
+Now Tyk Dashboard should be accessible through service `dashboard-svc-tyk-tyk-dashboard` at port `3000`. You can login to Dashboard using the admin email and password to start managing APIs. Tyk Gateway will be accessible through service `gateway-svc-tyk-tyk-gateway.tyk.svc` at port `8080`.
+
+Keep reading to learn about other configuration options included in the Helm Chart.
 
 {{< tab_end >}}
 {{< tabs_end >}}
