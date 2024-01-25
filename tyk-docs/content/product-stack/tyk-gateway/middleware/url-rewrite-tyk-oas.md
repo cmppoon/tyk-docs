@@ -159,6 +159,7 @@ The second advanced trigger has this configuration:
 
 So if a `GET` request is made to `/books/author` with a header `"X-Enable-Beta":"true"` and, within the session metadata, `"beta_enabled":"true"` the second advanced trigger will fire and the URL will be written to `https://beta.library.com/books/author` taking the request to a different upstream host entirely.
 
+The configurations above are complete and valid Tyk OAS API Definitions that you can import into Tyk to try out the URL rewriter.
 ## Configuring the URL rewriter in the API Designer
 
 Adding and configuring the URL rewrite feature to your API endpoints is easy when using the API Designer in the Tyk Dashboard, simply follow the steps taken in this short video:
