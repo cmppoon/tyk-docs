@@ -24,7 +24,7 @@ Tyk uses Redis to store the cached responses and, as you'd expect from Tyk, ther
 
 There are two approaches to configure caching for an API deployed with Tyk:
 
- - [Basic]({{< ref "basic-config-and-security/reduce-latency/caching/global-cache">}}) or [Safe Request]({< ref "#safe-request" >}) caching is applied at the API level for all requests for which it is safe to do so.
+ - [Basic]({{< ref "basic-config-and-security/reduce-latency/caching/global-cache">}}) or [Safe Request]({{< ref "basic-config-and-security/reduce-latency/caching#global-cache-safe-requests" >}}) caching is applied at the API level for all requests for which it is safe to do so.
  - [Advanced]({{< ref "basic-config-and-security/reduce-latency/caching/advanced-cache">}}) caching options can be applied at the endpoint level.
 
 Tyk's advanced caching options allow you to selectively cache the responses to all requests, only those from specific paths or only responses with specific status codes returned by the API. You can even cache dynamically based upon instruction from the upstream service received within the response.
