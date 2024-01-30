@@ -128,7 +128,11 @@ kubectl create secret generic postgres-secrets  -n $NAMESPACE --from-literal=pos
 ```
 
 
->NOTE: Please make sure you are installing MongoDB or PostgreSQL versions that are supported by Tyk. Please refer to Tyk docs to get list of [supported versions]({{< ref "tyk-dashboard/database-options" >}}).
+{{< note >}}
+**Note**
+
+Ensure that you are installing PostgreSQL versions that are supported by Tyk. Please consult the list of [supported versions]({{< ref "tyk-dashboard/database-options" >}}) that are compatible with Tyk.
+{{< /note >}}
 
 **4. Install Tyk**
 ```
@@ -206,7 +210,7 @@ If you do not already have MongoDB installed, you may use these charts provided 
 helm upgrade tyk-mongo oci://registry-1.docker.io/bitnamicharts/mongodb -n $NAMESPACE --install
 ```
 
-We would need the MongoDB connection string for Tyk installation. You can store it in a secret and provide the secret in installation later.
+We require the MongoDB connection string for Tyk installation. You can store it in a secret and provide the secret in installation later.
 
 ```
 MONGOURL=mongodb://root:$(kubectl get secret --namespace $NAMESPACE tyk-mongo-mongodb -o jsonpath="{.data.mongodb-root-password}" | base64 -d)@tyk-mongo-mongodb.$NAMESPACE.svc:27017/tyk_analytics?authSource=admin
@@ -215,7 +219,11 @@ kubectl create secret generic mongourl-secrets --from-literal=mongoUrl=$MONGOURL
 ```
 
 
->NOTE: Please make sure you are installing MongoDB or PostgreSQL versions that are supported by Tyk. Please refer to Tyk docs to get list of [supported versions]({{< ref "tyk-dashboard/database-options" >}}).
+{{< note >}}
+**Note**
+
+Ensure that you are installing MongoDB versions that are supported by Tyk. Please consult the list of [supported versions]({{< ref "tyk-dashboard/database-options" >}}) that are compatible with Tyk.
+{{< /note >}}
 
 **4. Install Tyk**
 ```
@@ -252,7 +260,7 @@ helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
 helm repo update
 ```
 
-See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation.
+For further documentation relating to *helm* command usage, please refer to the [helm repo](https://helm.sh/docs/helm/helm_repo/).
 
 ## Installing The Chart
 
