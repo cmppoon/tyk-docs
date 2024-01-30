@@ -119,7 +119,7 @@ helm upgrade tyk-postgres oci://registry-1.docker.io/bitnamicharts/postgresql --
 
 Follow the notes from the installation output to get connection details.
 
-We would need the PostgreSQL connection string for Tyk  installation. You can store it in a secret and provide the secret in installation later.
+We require the PostgreSQL connection string for Tyk installation. This can be stored in a secret and will be used in installation later.
 
 ```
 POSTGRESQLURL=host=tyk-postgres-postgresql.$NAMESPACE.svc\ port=5432\ user=postgres\ password=$(kubectl get secret --namespace $NAMESPACE tyk-postgres-postgresql -o jsonpath="{.data.postgres-password}" | base64 -d)\ database=tyk_analytics\ sslmode=disable
