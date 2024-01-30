@@ -118,7 +118,7 @@ The table below is an illustrative example, but shows the intent:
 | | Pump v1.9.0 | Pump all versions |
 | | TIB (if using standalone) v1.5 | TIB all versions |
 
-The compatibility matrix table shown above will be part of upcoming [Gateway release notes]({{< ref "product-stack/tyk-gateway/release-notes/overview" >}}) for versions 5.3 and beyond. Additionally, these release notes will list tested third-party dependencies like *PostgreSQL, MongoDB, Redis*, and more.
+The compatibility matrix table shown above will be part of upcoming [Gateway release notes]({{< ref "product-stack/tyk-gateway/release-notes/overview" >}}) for versions 5.3 and beyond. Additionally, these release notes will list tested third-party dependencies like *PostgreSQL, MongoDB, Redis* and more.
 
 --- 
 
@@ -136,26 +136,19 @@ To receive updates on our upcoming Long-Term Support (LTS) release schedule and 
 
 ---
 
-## LTS Support Policy For Components Other Than Tyk Gateway and Tyk Dashboard
+## Support Arrangements for Other Tyk Components
 
-The Tyk product is comprised of various components, such as Tyk Sync, Tyk Pump and Tyk Operator. Some of these components are more standalone than others, which allows us to operate different release cadences. Consequently, we strive to avoid long term support policies for any component, except Tyk Gateway and Tyk Dashboard.
+We have established a detailed LTS structure for Tyk Gateway and Tyk Dashboard due to their foundational role in our customers’ infrastructure. However, our support strategy for Tyk Pump, Tyk Identity Broker (TIB), MDCB, and Tyk Operator is tailored to reflect their distinct operational aspects and risk profiles, and is deeply integrated with our LTS model.
 
-Tyk Gateway and Tyk Dashboard represent the core product and contain the majority of our workflows. Subsequently, these have a long term support policy.
+These components are often more standalone in nature and are subject to infrequent and minor changes compared to the core products. Therefore, aligning them with the same LTS versioning isn’t necessary or practical. Instead, we employ a continuous delivery model that ensures these components are always updated with the latest improvements and security patches. Our commitment extends beyond version numbers, as we ensure each of these components is thoroughly tested for quality assurance with all active LTS releases of the Gateway and Dashboard.
 
-#### Enterprise Portal
+Ultimately, our diversified support approach aims to balance agility with assurance, offering the most appropriate level of support for each component while minimising risk and maximising value for our customers.
+To provide the most secure and efficient environment, we advise the following with the release of a new LTS version:
 
-We strive to avoid any long term support arrangements for our Enterprise Portal. We run a regular 6 week release cadence which delivers new capability, extension of existing capability and bug fixes. Our policy is that we aim to avoid any breaking changes, so in effect the entire Enterprise Portal is supported. Here we'd increment out version as a minor version - 1.3.0, 1.4.0, 1.5.0 etc.
+- **Developer Portal**: Continually evolves with frequent updates. We recommend adopting the latest release for optimal performance and feature set, ensuring consistent user experience and accessibility to the newest enhancements.
 
-We support our release cadence with a critical fix process. This is invoked when a severity one incident is declared, usually defined as systems down time, no workaround or a critical security issue.
+- **MDCB and Helm**: Receive updates synchronized with the core Gateway and Dashboard to support new features and capabilities. These components are mature and updates typically consist of minor iterations.
 
-Our critical fix process commits to release as soon as possible and we issue a standalone fix outside of our normal cadence.
+- **Pump, TIB, Sync and Operator**: We recommend staying up to date with these components because they are rigorously tested to operate smoothly with the active LTS versions of Tyk Gateway and Tyk Dashboard.
 
-The only exception to this policy is if we ever need to release a breaking change. This would mean that we have to release a new major version (e.g. version 2.0). In this exceptional circumstance we would support both the old major version and the new one concurrently for six months - please note that the old version would only be supported in terms of critical fixes, not new functionality. After six months, the previous major version would fall out of support.
-
-If you are using Enterprise Portal on Tyk Cloud, we keep you safe, secure and up to date with the latest features by auto upgrading you to the latest version. When a new release is launched, older versions are immediately deprecated. If a customer wants to use a previous version, this is possible via rollback. However, if an issue arises on an older version our advice would be to upgrade to the latest version.
-
-#### Tyk Pump, Tyk Identity Broker, MDCB and Tyk Operator
-
-Minor updates to Tyk Pump, Tyk Identity Broker (TIB), MDCB and Tyk Operator are deployable swiftly with minimal risk and no breaking changes. Tyk will provide support for the latest *major.minor* version (e.g. Tyk Pump v1.7) until the subsequent *major.minor* version (e.g. Tyk Pump v1.8) is released, at which point support for the newer version will commence.
-
-To ensure backward compatibility, we confirm that each Pump release and other components are compatible with the Long Term Support (LTS) versions of the Gateway and Dashboard. For instance, *Tyk Pump* v1.8 underwent validation to ensure compatibility with release v5 of *Tyk Gateway* and *Tyk Dashboard*. This alignment persists under the LTS model. Following the semantic versioning convention, if there's a need for a fix in the *Tyk Pump* version, it would be labelled as a patch version (e.g. v1.8.1).
+With new releases of Tyk Gateway and Tyk Dashboard LTS versions, our customers should follow the above guidelines to ensure the most secure, stable and efficient environment.
