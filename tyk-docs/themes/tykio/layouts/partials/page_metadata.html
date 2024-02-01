@@ -16,7 +16,7 @@
     </svg>
 
     {{ $readTime := cond (gt .ReadingTime 1) "minutes" "minute" }}
-    {{ .ReadingTime }}{{$readTime}} read.
+    {{ .ReadingTime }} {{$readTime}} read.
 </p>
 {{- end -}}
 {{- end -}}
