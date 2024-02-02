@@ -72,7 +72,7 @@ Tyk Enterprise Portal, Tyk Operator and httpbin CRD example.
 - `redis-sentinel`: Bitnami Redis Sentinel deployment
 
 ### Storage Options
-- `mongo`: Bitnami Mongo database deployment as a Tyk backend
+- `mongo`: [Bitnami Mongo](https://artifacthub.io/packages/helm/bitnami/mongodb) database deployment as a Tyk backend
 - `postgres`: [Bitnami Postgres](https://artifacthub.io/packages/helm/bitnami/postgresql) database deployment as a Tyk backend
 
 ### Supplementary Deployments
