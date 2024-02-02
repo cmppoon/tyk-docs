@@ -9,7 +9,7 @@ Tyk's [URL rewriter]({{< ref "transform-traffic/url-rewriting" >}}) uses the con
 
 URL rewrite triggers and rules are explained in detail [here]({{< ref "product-stack/tyk-gateway/middleware/url-rewrite-middleware" >}}).
 
-When working with Tyk OAS APIs the rules and triggers are configured in the [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc#operation" >}}); this can be done manually within the `.json` file or from the API Designer in the Tyk Dashboard.
+When working with Tyk OAS APIs the rules and triggers are configured in the [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc#operation" >}}). You can do this via the Tyk Dashboard API or in the API Designer.
 
 If you're using the legacy Tyk Classic APIs, then check out the [Tyk Classic]({{< ref "product-stack/tyk-gateway/middleware/url-rewrite-tyk-classic" >}}) page.
 
